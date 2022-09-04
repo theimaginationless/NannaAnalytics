@@ -1,0 +1,37 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization:  true
+  h2:
+    console:
+      enabled:  true
+    tcp:
+      enabled:  true
+
+server:
+  error:
+    include-message: always
+
+nannaanalytics:
+  authentication:
+    invite:
+      lifeTime: 1440 # in minutes. 24 hrs by default (1440)
+    jwt:
+      tokenExpirationAfterDays: 30
+      secret: 'bBu=on<#%sq=o8}PG~44s|gR{f[,+u*|!j@rEnSI|!#D.Trm$GFpF(gq9ayd[`DX'
+
+  admin:
+    master:
+      create: ${NANNALYTICS.ADMIN.MASTER.CREATE:true}
+      name: 'master%ggdD'
+      password: 'SDKFja(Ffxgdr9oH(*UJdsfsdf'
+      email: 'admin@admin.com'
+
+#logging:
+#  level:
+#    root: DEBUG
