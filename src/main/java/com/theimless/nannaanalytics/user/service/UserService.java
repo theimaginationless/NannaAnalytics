@@ -2,8 +2,8 @@ package com.theimless.nannaanalytics.user.service;
 
 import com.theimless.nannaanalytics.common.user.model.Role;
 import com.theimless.nannaanalytics.common.user.model.User;
-import com.theimless.nannaanalytics.common.user.repository.RoleRepository;
-import com.theimless.nannaanalytics.common.user.repository.UserRepository;
+import com.theimless.nannaanalytics.user.repository.RoleRepository;
+import com.theimless.nannaanalytics.user.repository.UserRepository;
 import com.theimless.nannaanalytics.common.exception.rest.BadRequestException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,7 +84,7 @@ public class UserService {
 
     public User saveUser(User user) {
         user = transformToLowerCase(user);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(encodePassword(user.getPassword()));
         return userRepository.save(user);
     }
 
@@ -105,6 +105,14 @@ public class UserService {
 
     public Page<User> getAllUsers(Pageable pageable) {
         return userRepository.findAll(pageable);
+    }
+
+    public boolean checkPassword(User user, String password) {
+        return passwordEncoder.matches(password, user.getPassword());
+    }
+
+    private String encodePassword(String password) {
+        return passwordEncoder.encode(password);
     }
 
     private User transformToLowerCase(User user) {

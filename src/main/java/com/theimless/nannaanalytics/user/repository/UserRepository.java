@@ -1,4 +1,4 @@
-package com.theimless.nannaanalytics.common.user.repository;
+package com.theimless.nannaanalytics.user.repository;
 
 import com.theimless.nannaanalytics.common.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

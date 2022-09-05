@@ -21,6 +21,11 @@ public class AuthenticationService {
             throw new BadRequestException("User not found!");
         }
 
+
+        if (!userService.checkPassword(user, request.getPassword())) {
+            throw new BadRequestException("Incorrect credentials");
+        }
+
         var auth = new UsernamePasswordAuthenticationToken(
                 request.getUsername(),
                 request.getPassword(),
