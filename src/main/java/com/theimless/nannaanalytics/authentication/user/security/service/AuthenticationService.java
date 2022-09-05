@@ -20,8 +20,7 @@ public class AuthenticationService {
         if (user == null) {
             throw new BadRequestException("User not found!");
         }
-
-
+        
         if (!userService.checkPassword(user, request.getPassword())) {
             throw new BadRequestException("Incorrect credentials");
         }
